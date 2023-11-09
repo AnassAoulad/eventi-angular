@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Evenement } from 'src/app/core/models/event.model';
 
 @Component({
@@ -8,5 +9,26 @@ import { Evenement } from 'src/app/core/models/event.model';
 })
 export class ItemEventComponent {
 
-  @Input() event: Evenement = {name: '', description: ''};
+  @Input() event: Evenement = {id: '', name: '', description: ''};
+  @Output() onUpdate = new EventEmitter();
+  @Output() onDelete = new EventEmitter();
+
+  constructor(private router: Router){
+
+  }
+
+  public editMode: boolean = false;
+
+  public updateEvent(){
+    this.onUpdate.emit(this.event)
+    this.editMode = false;
+  }
+
+  public deleteEvent(){
+    this.onDelete.emit(this.event.id)
+  }
+
+  public detailEvent(){
+    this.router.navigateByUrl('event/' + this.event.id);
+  }
 }

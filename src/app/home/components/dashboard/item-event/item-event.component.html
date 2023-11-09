@@ -1,4 +1,18 @@
 <div class="content">
-    <p>name : {{event.name}}</p>
-    <p>description : {{event.description}}</p>
+    <div card-content *ngIf="!editMode">
+        <p>name : {{event.name}}</p>
+        <p>description : {{event.description}}</p>
+    </div>
+    <div edit-mode *ngIf="editMode">
+        <label id="name">Name</label>
+        <input [(ngModel)]="event.name" title="name">
+        <label id="name">Description</label>
+        <input [(ngModel)]="event.description" title="description">
+    </div>
+    <button (click)="editMode = true" *ngIf="!editMode">edit</button>
+    <button (click)="deleteEvent()" *ngIf="!editMode">delete</button>
+    <button (click)="detailEvent()" *ngIf="!editMode">detail</button>
+    <button (click)="updateEvent()" *ngIf="editMode">save</button>
 </div>
+
+
