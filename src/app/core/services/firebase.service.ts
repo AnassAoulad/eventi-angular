@@ -23,17 +23,20 @@ export class FirebaseService {
     this.taskCol = collection(this.db, 'Taches');
 
     // Get Realtime Data
+
+     onSnapshot(this.taskCol, (snapshot) => {
+      this.updatedSnapshot.next(snapshot);
+    }, (err) => {
+      console.log(err);
+    })  
+
     onSnapshot(this.eventCol, (snapshot) => {
       this.updatedSnapshot.next(snapshot);
     }, (err) => {
       console.log(err);
     })
 
-    onSnapshot(this.taskCol, (snapshot) => {
-      this.updatedSnapshot.next(snapshot);
-    }, (err) => {
-      console.log(err);
-    })
+   
   }
 
   async getEvents() {
