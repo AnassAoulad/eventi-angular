@@ -1,5 +1,7 @@
 <p>Page détail</p>
-{{ event | json}}
+<h2> nom Evenement : {{event.name}}</h2>
 
 <h2>Tasks :</h2>
-{{ taskCollectionData | json}}
+
+<app-item-task *ngFor="let task of taskCollectionData" [task]="task" (onUpdate)="updateTask($event)" (onDelete)="deleteTask($event)"></app-item-task>
+

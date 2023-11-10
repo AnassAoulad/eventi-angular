@@ -1,4 +1,2 @@
-<p>dashboard works!</p>
 <h1>Eventi Home Page !</h1>
-{{eventCollectiondata | json}}
 <app-list-events [events]="eventCollectiondata" (onUpdate)="updateEvent($event)" (onDelete)="deleteEvent($event)"></app-list-events>

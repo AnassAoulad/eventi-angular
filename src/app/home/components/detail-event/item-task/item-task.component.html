@@ -1,0 +1,17 @@
+<div class="content">
+    <div card-content *ngIf="!editMode">
+        <p>name : {{task.name}}</p>
+        <p>description : {{task.description}}</p>
+    </div>
+    <div edit-mode *ngIf="editMode">
+        <label id="name">Name</label>
+        <input [(ngModel)]="task.name" title="name">
+        <label id="name">Description</label>
+        <input [(ngModel)]="task.description" title="description">
+    </div>
+    <button (click)="editMode = true" *ngIf="!editMode">edit</button>
+    <button (click)="deleteTask()" *ngIf="!editMode">delete</button>
+    <button (click)="detailTask()" *ngIf="!editMode">detail</button>
+    <button (click)="updateTask()" *ngIf="editMode">save</button>
+</div>
+

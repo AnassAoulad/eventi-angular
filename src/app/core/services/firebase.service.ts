@@ -78,4 +78,14 @@ export class FirebaseService {
     const snapshot = await getDocs(q);
     return snapshot;
   }
+
+  async deleteTask(id: string) {
+    const docRef = doc(this.db, 'Taches', id)
+    await deleteDoc(docRef);
+  }
+
+  async updateTask(event: Evenement) {
+    const docRef = doc(this.db, 'Taches', event.id);
+    await updateDoc(docRef, { ...event })
+  }
 }

@@ -7,12 +7,13 @@ import { ListEventsComponent } from './components/dashboard/list-events/list-eve
 import { ItemEventComponent } from './components/dashboard/item-event/item-event.component';
 import { FormsModule } from '@angular/forms';
 import { DetailEventComponent } from './views/detail-event/detail-event.component';
+import { ItemTaskComponent } from './components/detail-event/item-task/item-task.component';
 
 
 
 @NgModule({
   declarations: [
-    DashboardComponent, HomeComponent, ListEventsComponent, ItemEventComponent, DetailEventComponent
+    DashboardComponent, HomeComponent, ListEventsComponent, ItemEventComponent, DetailEventComponent, ItemTaskComponent
   ],
   imports: [
     CommonModule, HomeRoutingModule, FormsModule

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentData, DocumentSnapshot, QuerySnapshot } from 'firebase/firestore';
 import { Evenement } from 'src/app/core/models/event.model';
+import { Task } from 'src/app/core/models/task.model';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 
 @Component({
@@ -44,6 +45,15 @@ export class DetailEventComponent implements OnInit{
     snapshot.docs.forEach((task) => {
       this.taskCollectionData.push({ ...task.data(), id: task.id });
     })
+  }
+
+  async updateTask(task: Task){
+    console.log('update event home =', task);
+    await this.firebaseService.updateTask(task);
+  }
+
+  async deleteTask(id: string){
+    await this.firebaseService.deleteTask(id)
   }
 
   
