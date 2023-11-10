@@ -47,6 +47,10 @@ export class DetailEventComponent implements OnInit{
     })
   }
 
+  public getDj(){
+
+  }
+
   async updateTask(task: Task){
     console.log('update event home =', task);
     await this.firebaseService.updateTask(task);

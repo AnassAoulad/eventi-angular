@@ -11,7 +11,7 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
 export class DashboardComponent implements OnInit{
 
   public eventCollectiondata: any = [];
-  public eventDetail: Evenement = {name: "", description: "", id:""}
+  public eventDetail: Evenement = {name: "", description: "", id:"", id_dj: ""}
 
   constructor(private firebaseService: FirebaseService){}
 

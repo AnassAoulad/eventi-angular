@@ -4,6 +4,7 @@ import { Firestore, getFirestore, collection, addDoc, getDocs, deleteDoc, doc, u
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Evenement } from '../models/event.model';
+import { Task } from '../models/task.model';
 
 @Injectable({
   providedIn: 'root'
@@ -84,8 +85,8 @@ export class FirebaseService {
     await deleteDoc(docRef);
   }
 
-  async updateTask(event: Evenement) {
-    const docRef = doc(this.db, 'Taches', event.id);
-    await updateDoc(docRef, { ...event })
+  async updateTask(task: Task) {
+    const docRef = doc(this.db, 'Taches', task.id);
+    await updateDoc(docRef, { ...task })
   }
 }
