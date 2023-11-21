@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Evenement } from '../models/event.model';
 import { Task } from '../models/task.model';
+import { ServiceType } from '../models/prestataire.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class FirebaseService {
   db: Firestore;
   eventCol: CollectionReference<DocumentData>;
   taskCol: CollectionReference<DocumentData>;
+  prestataireCol: CollectionReference<DocumentData>;
   private updatedSnapshot = new Subject<QuerySnapshot<DocumentData>>();
   obsr_UpdatedSnapshot = this.updatedSnapshot.asObservable();
 
@@ -22,6 +24,7 @@ export class FirebaseService {
     this.db = getFirestore();
     this.eventCol = collection(this.db, 'Evenement');
     this.taskCol = collection(this.db, 'Taches');
+    this.prestataireCol = collection(this.db, 'Prestataire');
 
     // Get Realtime Data
 
@@ -75,7 +78,7 @@ export class FirebaseService {
   }
 
   async getTasksById(idEvent: string) {
-    const q = query(this.taskCol, where("idEvenement", "==", idEvent));
+    const q = query(this.taskCol, where("id_event", "==", idEvent));
     const snapshot = await getDocs(q);
     return snapshot;
   }
@@ -89,4 +92,11 @@ export class FirebaseService {
     const docRef = doc(this.db, 'Taches', task.id);
     await updateDoc(docRef, { ...task })
   }
+
+  async getPrestataireByType(type: ServiceType){
+    const q = query(this.prestataireCol, where("type_service", "==", type));
+    const snapshot = await getDocs(q);
+    return snapshot;
+  }
+  
 }

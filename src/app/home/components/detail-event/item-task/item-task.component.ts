@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Task } from 'src/app/core/models/task.model';
+import { StatusEvent, Task } from 'src/app/core/models/task.model';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { Task } from 'src/app/core/models/task.model';
 })
 export class ItemTaskComponent {
 
-  @Input() task: Task = {id: '', name: '', description: '', date: "", idEvent: "", idUser:"", status: ""};
+  @Input() task: Task = {id: '', name: '', description: '', date_echeance: "", id_event: "", id_user:"", status: StatusEvent.progress};
   @Output() onUpdate = new EventEmitter();
   @Output() onDelete = new EventEmitter();
 
@@ -17,15 +17,21 @@ export class ItemTaskComponent {
   public editMode: boolean = false;
 
   public updateTask(){
-    this.onUpdate.emit(this.task)
+    this.onUpdate.emit(this.task);
     this.editMode = false;
   }
 
   public deleteTask(){
-    this.onDelete.emit(this.task.id)
+    this.onDelete.emit(this.task.id);
   }
 
-  public detailTask(){
-
+  public updateStatusTask(){
+    if(this.task.status === StatusEvent.done){
+      this.onUpdate.emit({...this.task, status: StatusEvent.progress});
+    }
+    else{
+      this.onUpdate.emit({...this.task, status: StatusEvent.done});
+    }
+    
   }
 }

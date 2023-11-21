@@ -11,7 +11,7 @@
     </div>
     <button (click)="editMode = true" *ngIf="!editMode">edit</button>
     <button (click)="deleteTask()" *ngIf="!editMode">delete</button>
-    <button (click)="detailTask()" *ngIf="!editMode">detail</button>
+    <button (click)="updateStatusTask()" *ngIf="!editMode">{{task.status === "done" ? "progress" : "done"}}</button>
     <button (click)="updateTask()" *ngIf="editMode">save</button>
 </div>
 

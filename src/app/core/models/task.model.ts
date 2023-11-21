@@ -2,8 +2,13 @@ export interface Task {
     id: string,
     name: string,
     description: string,
-    date: string,
-    idEvent: string,
-    idUser: string,
-    status: string,
+    date_echeance: string,
+    id_event: string,
+    id_user: string,
+    status: StatusEvent,
+}
+
+export enum StatusEvent {
+    progress = "progress",
+    done = "done"
 }
