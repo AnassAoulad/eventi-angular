@@ -1,6 +1,7 @@
 <p>Page détail</p>
 <h2> nom Evenement : {{event.name}}</h2>
 <p> DJ : {{dj | json}} </p>
+
 <p> Traiteur : {{ traiteur | json }}</p>
 
 <h2>Taches en cours:</h2>
@@ -10,4 +11,3 @@
 <h2>Taches terminées</h2>
 
 <app-item-task *ngFor="let task of listTasksDone" [task]="task" (onUpdate)="updateTask($event)" (onDelete)="deleteTask($event)"></app-item-task>
-

@@ -24,7 +24,7 @@ export class DetailEventComponent implements OnInit{
   public listDJ: any = [];
   public listTraiteur: any = []
 
-  public dj?: Prestataire;
+  public dj: Partial<Prestataire> = {name:""};
   public traiteur?: Prestataire;
   
   ngOnInit(){

@@ -8,6 +8,7 @@ import { ItemEventComponent } from './components/dashboard/item-event/item-event
 import { FormsModule } from '@angular/forms';
 import { DetailEventComponent } from './views/detail-event/detail-event.component';
 import { ItemTaskComponent } from './components/detail-event/item-task/item-task.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -16,7 +17,7 @@ import { ItemTaskComponent } from './components/detail-event/item-task/item-task
     DashboardComponent, HomeComponent, ListEventsComponent, ItemEventComponent, DetailEventComponent, ItemTaskComponent
   ],
   imports: [
-    CommonModule, HomeRoutingModule, FormsModule
+    CommonModule, HomeRoutingModule, FormsModule, SharedModule
   ]
 })
 export class HomeModule { }
