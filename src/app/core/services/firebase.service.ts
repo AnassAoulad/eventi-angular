@@ -15,27 +15,31 @@ export class FirebaseService {
   db: Firestore;
   eventCol: CollectionReference<DocumentData>;
   taskCol: CollectionReference<DocumentData>;
+  userCol: CollectionReference<DocumentData>;
   prestataireCol: CollectionReference<DocumentData>;
-  private updatedSnapshot = new Subject<QuerySnapshot<DocumentData>>();
-  obsr_UpdatedSnapshot = this.updatedSnapshot.asObservable();
+  private updatedSnapshotEvent = new Subject<QuerySnapshot<DocumentData>>();
+  private updatedSnapshotTask = new Subject<QuerySnapshot<DocumentData>>();
+  obsr_UpdatedSnapshotEvent = this.updatedSnapshotEvent.asObservable();
+  obsr_UpdatedSnapshotTask = this.updatedSnapshotTask.asObservable();
 
   constructor() { 
     initializeApp(environment.firebaseConfig);
     this.db = getFirestore();
     this.eventCol = collection(this.db, 'Evenement');
     this.taskCol = collection(this.db, 'Taches');
+    this.userCol = collection(this.db, 'Utilisateurs');
     this.prestataireCol = collection(this.db, 'Prestataire');
 
     // Get Realtime Data
 
      onSnapshot(this.taskCol, (snapshot) => {
-      this.updatedSnapshot.next(snapshot);
+      this.updatedSnapshotTask.next(snapshot);
     }, (err) => {
       console.log(err);
     })  
 
     onSnapshot(this.eventCol, (snapshot) => {
-      this.updatedSnapshot.next(snapshot);
+      this.updatedSnapshotEvent.next(snapshot);
     }, (err) => {
       console.log(err);
     })
@@ -54,7 +58,6 @@ export class FirebaseService {
     if (snapshot.exists()) {
       return snapshot.data();
     } else {
-      // docSnap.data() will be undefined in this case
       console.log("No such document!");
       return;
     }
@@ -93,9 +96,21 @@ export class FirebaseService {
     await updateDoc(docRef, { ...task })
   }
 
+  async createTask(task: Partial<Task>) {
+    await addDoc(this.taskCol, {
+      ...task
+    })
+    return;
+  }
+
   async getPrestataireByType(type: ServiceType){
     const q = query(this.prestataireCol, where("type_service", "==", type));
     const snapshot = await getDocs(q);
+    return snapshot;
+  }
+
+  async getUsers(){
+    const snapshot = await getDocs(this.userCol);
     return snapshot;
   }
   

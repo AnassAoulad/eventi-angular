@@ -4,7 +4,7 @@ import { Evenement } from 'src/app/core/models/event.model';
 @Component({
   selector: 'app-list-events',
   templateUrl: './list-events.component.html',
-  styleUrls: ['./list-events.component.css']
+  styleUrls: ['./list-events.component.scss']
 })
 export class ListEventsComponent {
   @Input() events : Evenement[] = [];

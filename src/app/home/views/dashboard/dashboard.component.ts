@@ -17,17 +17,17 @@ export class DashboardComponent implements OnInit{
 
   ngOnInit(): void {
     this.get();
-    this.firebaseService.obsr_UpdatedSnapshot.subscribe((snapshot) => {
-      this.updateStudentCollection(snapshot);
+    this.firebaseService.obsr_UpdatedSnapshotEvent.subscribe((snapshot) => {
+      this.updateEventCollection(snapshot);
     })
   }
 
   async get() {
     const snapshot = await this.firebaseService.getEvents();
-    this.updateStudentCollection(snapshot);
+    this.updateEventCollection(snapshot);
   }
 
-  updateStudentCollection(snapshot: QuerySnapshot<DocumentData>) {
+  public updateEventCollection(snapshot: QuerySnapshot<DocumentData>) {
     this.eventCollectiondata = [];
     snapshot.docs.forEach((student) => {
       this.eventCollectiondata.push({ ...student.data(), id: student.id });
@@ -35,7 +35,6 @@ export class DashboardComponent implements OnInit{
   }
 
   async updateEvent(event: Evenement){
-    console.log('update event home =', event);
     await this.firebaseService.updateEvent(event);
   }
 

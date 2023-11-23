@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Timestamp } from 'firebase/firestore';
 import { StatusEvent, Task } from 'src/app/core/models/task.model';
+import { User } from 'src/app/core/models/user.model';
 
 
 @Component({
@@ -7,14 +9,19 @@ import { StatusEvent, Task } from 'src/app/core/models/task.model';
   templateUrl: './item-task.component.html',
   styleUrls: ['./item-task.component.scss']
 })
-export class ItemTaskComponent {
+export class ItemTaskComponent implements OnInit {
+  public date:any;
+  public editMode: boolean = false;
 
-  @Input() task: Task = {id: '', name: '', description: '', date_echeance: "", id_event: "", id_user:"", status: StatusEvent.progress};
+  @Input() task: Partial<Task> = {id: '', name: '', description: '', id_event: "", id_user:"", status: StatusEvent.progress};
+  @Input() listUsers: User[] = [];
+  @Input() user: any;
   @Output() onUpdate = new EventEmitter();
   @Output() onDelete = new EventEmitter();
 
-
-  public editMode: boolean = false;
+  ngOnInit(): void {
+    this.date = this.task?.date_echeance?.toDate();
+  }
 
   public updateTask(){
     this.onUpdate.emit(this.task);
@@ -33,5 +40,9 @@ export class ItemTaskComponent {
       this.onUpdate.emit({...this.task, status: StatusEvent.done});
     }
     
+  }
+
+  public updateUserTask(event:any){
+    this.onUpdate.emit({...this.task, id_user: event.value.id});
   }
 }
