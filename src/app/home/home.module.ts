@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
-import {HomeComponent} from './home.component'
+import { HomeComponent } from './home.component'
 import { HomeRoutingModule } from './home-routing.module';
 import { ListEventsComponent } from './components/dashboard/list-events/list-events.component';
 import { ItemEventComponent } from './components/dashboard/item-event/item-event.component';
@@ -9,7 +9,9 @@ import { FormsModule } from '@angular/forms';
 import { DetailEventComponent } from './views/detail-event/detail-event.component';
 import { ItemTaskComponent } from './components/detail-event/item-task/item-task.component';
 import { SharedModule } from '../shared/shared.module';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -17,7 +19,7 @@ import { SharedModule } from '../shared/shared.module';
     DashboardComponent, HomeComponent, ListEventsComponent, ItemEventComponent, DetailEventComponent, ItemTaskComponent
   ],
   imports: [
-    CommonModule, HomeRoutingModule, FormsModule, SharedModule
+    CommonModule, HomeRoutingModule, FormsModule, SharedModule, MatToolbarModule, MatButtonModule, MatIconModule
   ]
 })
 export class HomeModule { }
