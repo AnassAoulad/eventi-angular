@@ -1,4 +1,4 @@
-<div class="content" style="width: auto;">
+<div class="content">
     <div card-content *ngIf="!editMode">
         <p title>{{event.name}}</p>
         <p>description : {{event.description}}</p>
@@ -10,10 +10,11 @@
         <input [(ngModel)]="event.description" title="description">
     </div>
     <div button-content>
-        <button style="width: auto; height: 35px;" mat-fab extended color="primary" edit (click)="editMode = true" *ngIf="!editMode">edit</button>
-        <button style="width: auto; height: 35px;" mat-fab extended color="warn" delete (click)="deleteEvent()" *ngIf="!editMode">delete</button>
-        <button style="width: auto; height: 35px;" mat-fab extended color="accent" detail (click)="detailEvent()" *ngIf="!editMode">detail</button>
-        <button style="width: auto; height: 35px;" mat-fab extended color="accent" save (click)="updateEvent()" *ngIf="editMode">save</button>
+        <button mat-fab extended color="primary" edit (click)="editMode = true" *ngIf="!editMode">edit</button>
+        <button mat-fab extended color="warn" delete (click)="deleteEvent()" *ngIf="!editMode">delete</button>
+        <button mat-fab extended color="accent" detail (click)="detailEvent()" *ngIf="!editMode">detail</button>
+        <button mat-fab extended color="warn" cancel (click)="updateEvent()" *ngIf="editMode">cancel</button>
+        <button mat-fab extended color="accent" save (click)="updateEvent()" *ngIf="editMode">save</button>
     </div>
 </div>
 

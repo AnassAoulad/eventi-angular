@@ -10,8 +10,10 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
 })
 export class DashboardComponent implements OnInit{
 
+  public editMode: boolean = false;
+
   public eventCollectiondata: any = [];
-  public eventDetail: Evenement = {name: "", description: "", id:"", id_dj: "", id_traiteur: ""}
+  public event: Evenement = {name: "", description: "", id:"", id_dj: "", id_traiteur: "", id_photographe:"", lieu: ""}
 
   constructor(private firebaseService: FirebaseService){}
 
@@ -34,6 +36,10 @@ export class DashboardComponent implements OnInit{
     })
   }
 
+  async createEvent(){
+    await this.firebaseService.createEvent(this.event);
+  }
+
   async updateEvent(event: Evenement){
     await this.firebaseService.updateEvent(event);
   }
@@ -42,6 +48,10 @@ export class DashboardComponent implements OnInit{
     await this.firebaseService.deleteEvent(id)
   }
 
-
+  public cancelForm(){
+    this.event.name = "";
+    this.event.description= "";
+    this.editMode = false;
+  }
 
 }

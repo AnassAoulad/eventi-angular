@@ -1,6 +1,6 @@
-<h2>Evenement : {{event.name}}</h2>
+<h2 style="text-align: center;">Evenement : {{event.name}}</h2>
 <div dropdown-content>
-    <div dj>
+    <div prestataire>
         <mat-form-field>
             <mat-label>DJ</mat-label>
             <mat-select [(ngModel)]="dj" name="dj" (selectionChange)="updateDjEvent($event)">
@@ -15,7 +15,7 @@
             phone : {{dj.phone}}</p>
         </div>
     </div>
-    <div traiteur>
+    <div prestataire>
         <mat-form-field>
             <mat-label>Traiteur</mat-label>
             <mat-select [(ngModel)]="traiteur" name="traiteur" (selectionChange)="updateTraiteurEvent($event)">
@@ -30,30 +30,70 @@
             phone : {{traiteur.phone}}</p>
         </div>
     </div>
-    <div create-task >
-        
-        
-        <button style="width: 18%;" mat-fab extended color="primary" (click)="showFormCreateTask = !showFormCreateTask">
+    <div prestataire>
+        <mat-form-field>
+            <mat-label>Photographe</mat-label>
+            <mat-select [(ngModel)]="photographe" name="photographe" (selectionChange)="updatePhotographeEvent($event)">
+                <mat-option *ngFor="let photographe of listPhotographe" [value]="photographe">{{photographe.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div button-content>
+        <button mat-fab extended color="primary" (click)="showFormCreateTask = !showFormCreateTask">
             <mat-icon>add</mat-icon>
-            Ajouter une tache
-          </button>
-        <div edit-mode *ngIf="showFormCreateTask">
-            <p>
-                
-            <input matInput  [(ngModel)]="newTask.name" placeholder="Name" title="name">  
-           
-            <textarea [(ngModel)]="newTask.description" style="margin-top: 20px;margin-bottom: 20px;" rows="5" cols="30" matInput placeholder="Description"></textarea>
-            
+            Create Task
+        </button>
+        <button mat-fab extended color="primary" (click)="showFormCreatePrestataire = !showFormCreatePrestataire">
+            <mat-icon>add</mat-icon>
+            Create Prestataire
+        </button>
+    </div>
+    <div create-task>
+        <div edit-mode *ngIf="showFormCreateTask"> 
+            <mat-form-field>
+                <mat-label>Task Name</mat-label>
+                <input matInput [(ngModel)]="newTask.name" name="name">
+            </mat-form-field>  
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea [(ngModel)]="newTask.description" rows="2" cols="30" matInput placeholder="Description"></textarea>
+            </mat-form-field>
             <mat-form-field>
                 <mat-label>User Task</mat-label>
                 <mat-select [(ngModel)]="newTask.id_user" name="user">
                     <mat-option *ngFor="let user of listUsers" [value]="user.id">{{user.prenom}}{{user.nom}}</mat-option>
                 </mat-select>
             </mat-form-field>
-            </p>
-                
-           
            <button mat-fab extended color="primary" createTask (click)="createTask()">Create</button>
+        </div>
+        <div edit-mode *ngIf="showFormCreatePrestataire">
+            <mat-form-field>
+                <mat-label>Compagny name</mat-label>
+                <input matInput [(ngModel)]="newPrestataire.name" name="name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="newPrestataire.email" name="email" type="email">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Phone</mat-label>
+                <input matInput [(ngModel)]="newPrestataire.phone" name="name" type="tel">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Adresse</mat-label>
+                <textarea [(ngModel)]="newPrestataire.adresse" rows="2" cols="30" matInput placeholder="Adresse"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Description</mat-label>
+                <textarea [(ngModel)]="newPrestataire.description" rows="2" cols="30" matInput placeholder="Description"></textarea>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Service Type</mat-label>
+                <mat-select [(ngModel)]="newPrestataire.type_service" name="service">
+                    <mat-option *ngFor="let service of listService" [value]="service">{{service}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+           <button mat-fab extended color="primary" createTask (click)="createPrestataire()">Create</button>
         </div>
     </div>
 </div>
@@ -68,35 +108,9 @@
 <app-item-task *ngFor="let task of listTasksDone" [task]="task" [listUsers]="listUsers" [user]="getUserPerTask(task)" (onUpdate)="updateTask($event)" (onDelete)="deleteTask($event)"></app-item-task>
 </div>
 
-<h2>Evenements à venir :</h2>
-<div tasks-content>
-    <mat-card style="width: 300px;">
-        <mat-calendar [(selected)]="selected"></mat-calendar>
-    </mat-card>
-    
-    <p>Selected date: {{selected | date: 'dd/MM/yyyy'}} </p>
-      
-
-</div>
-
 <h2>Collaborateurs :</h2>
-<div tasks-content>
- 
-    <div avatar> <img src="url"></div>
-    <div avatar> <img src="url"></div>
-    <div avatar> <img src="url"></div>
-    <div avatar> <img src="url"></div>
-
-    <br>
-    
-
-</div>
-
-<div>
-    <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile BackTile>1</mat-grid-tile>
-        <mat-grid-tile BackTile>2</mat-grid-tile>
-        <mat-grid-tile>3</mat-grid-tile>
-        <mat-grid-tile>4</mat-grid-tile>
-      </mat-grid-list>    
+<div collab-content>
+    <div avatar *ngFor="let user of getCollab()"> 
+        <img src="url"> {{user.prenom}} {{user.nom}}
+    </div>
 </div>

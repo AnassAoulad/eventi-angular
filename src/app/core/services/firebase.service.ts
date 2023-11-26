@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Evenement } from '../models/event.model';
 import { Task } from '../models/task.model';
-import { ServiceType } from '../models/prestataire.model';
+import { Prestataire, ServiceType } from '../models/prestataire.model';
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +63,7 @@ export class FirebaseService {
     }
   }
 
-  async addEvent(event: Evenement) {
+  async createEvent(event: Evenement) {
     await addDoc(this.eventCol, {
       ...event
     })
@@ -99,6 +99,13 @@ export class FirebaseService {
   async createTask(task: Partial<Task>) {
     await addDoc(this.taskCol, {
       ...task
+    })
+    return;
+  }
+
+  async createPrestataire(prestataire: Partial<Prestataire>) {
+    await addDoc(this.prestataireCol, {
+      ...prestataire
     })
     return;
   }

@@ -13,7 +13,8 @@ import { FirebaseService } from 'src/app/core/services/firebase.service';
   
 })
 export class DetailEventComponent implements OnInit{
- public event: Evenement = {id: "1", name:"", description:"", id_dj:"", id_traiteur:""};
+ public event: Evenement = {id: "1", name:"", description:"", id_dj:"", id_traiteur:"", id_photographe: "", lieu:""};
+ public listService = Object.values(ServiceType);
  
   constructor(private route:ActivatedRoute, private firebaseService : FirebaseService){
   }
@@ -24,16 +25,20 @@ export class DetailEventComponent implements OnInit{
   public listTasksDone: Task[] = [];
   public listTasksInProgress: Task[] = [];
   public listDJ: any = [];
-  public listTraiteur: any = []
-  public listUsers: any = []
+  public listTraiteur: any = [];
+  public listPhotographe: any = [];
+  public listUsers: any = [];
 
   public showInfoDj: boolean = false;
   public showInfoTraiteur: boolean = false;
   public showFormCreateTask: boolean = false;
+  public showFormCreatePrestataire: boolean = false;
   public newTask: Partial<Task> = {};
+  public newPrestataire: Partial<Prestataire> = {};
 
   public dj: Partial<Prestataire> = {name:""};
   public traiteur: Partial<Prestataire> = {name:""};
+  public photographe: Partial<Prestataire> = {name:""};
   
   ngOnInit(){
     this.route.params.subscribe( params => {
@@ -42,12 +47,13 @@ export class DetailEventComponent implements OnInit{
       snapshot.then((data) => this.event = data as Evenement);
     }
   )
-  this.getTasks();
+ 
   this.getPrestataire();
   this.getUsers();
   this.firebaseService.obsr_UpdatedSnapshotTask.subscribe((snapshot) => {
     this.updateTaskCollection(snapshot);
   })
+   this.getTasks();
   }
 
 
@@ -62,13 +68,14 @@ export class DetailEventComponent implements OnInit{
       this.taskCollectionData.push({ ...task.data(), id: task.id });
     })
 
-    this.listTasksInProgress = this.taskCollectionData.filter((data: Task) => data.status !== "done")
-    this.listTasksDone = this.taskCollectionData.filter((data: Task) => data.status === "done");
+    this.listTasksInProgress = this.taskCollectionData.filter((data: Task) => data.status !== "done" && data.id_event === this.eventID)
+    this.listTasksDone = this.taskCollectionData.filter((data: Task) => data.status === "done" && data.id_event === this.eventID);
   }
 
   public async getPrestataire(){
     const snapshotDj = await this.firebaseService.getPrestataireByType(ServiceType.dj);
     const snapshotTraiteur = await this.firebaseService.getPrestataireByType(ServiceType.traiteur);
+    const snapshotPhotographe = await this.firebaseService.getPrestataireByType(ServiceType.photo);
 
     snapshotDj.docs.forEach((dj) => {
       this.listDJ.push({ ...dj.data(), id: dj.id });
@@ -78,8 +85,13 @@ export class DetailEventComponent implements OnInit{
       this.listTraiteur.push({ ...traiteur.data(), id: traiteur.id });
     })
 
+    snapshotPhotographe.docs.forEach((photographe) => {
+      this.listPhotographe.push({ ...photographe.data(), id: photographe.id });
+    })
+
     this.dj = this.listDJ.find((data: Prestataire) => data.id === this.event.id_dj);
     this.traiteur = this.listTraiteur.find((data: Prestataire) => data.id === this.event.id_traiteur);
+    this.photographe = this.listPhotographe.find((data: Prestataire) => data.id === this.event.id_photographe);
   }
 
   public async getUsers(){
@@ -100,6 +112,12 @@ export class DetailEventComponent implements OnInit{
     this.newTask = {};
   }
 
+  async createPrestataire(){
+    await this.firebaseService.createPrestataire({...this.newPrestataire});
+    this.showFormCreatePrestataire = false;
+    this.newPrestataire = {};
+  }
+
   async deleteTask(id: string){
     await this.firebaseService.deleteTask(id)
   }
@@ -112,9 +130,18 @@ export class DetailEventComponent implements OnInit{
     await this.firebaseService.updateEvent({...this.event, id_traiteur: event.value.id, id: this.eventID})
   }
 
+  async updatePhotographeEvent(event:any){
+    await this.firebaseService.updateEvent({...this.event, id_photographe: event.value.id, id: this.eventID})
+  }
+
   public getUserPerTask(task: Task){
     const user = this.listUsers.find((data:User) => data.id === task.id_user );
     return user;
+  }
+
+  public getCollab(){
+    const listUserTask = this.taskCollectionData.flatMap((data: Task) => data.id_user);
+    return this.listUsers.filter((data: User)=> listUserTask.includes(data.id));
   }
   
 }

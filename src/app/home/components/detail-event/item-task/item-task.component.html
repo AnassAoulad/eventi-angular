@@ -35,8 +35,8 @@
             Delete
           </button>  
           <button (click)="updateStatusTask()" *ngIf="!editMode"  mat-fab extended color="accent">
-            <mat-icon>{{task.status === "done" ? "progress" : "done"}}</mat-icon>
-            Done
+            <mat-icon>{{task.status === "done" ? "sync" : "done"}}</mat-icon>
+            {{task.status === "done" ? "progress" : "done"}}
           </button>  
           <button (click)="updateTask()" *ngIf="editMode"  mat-fab extended color="accent">
             <mat-icon>save</mat-icon>
