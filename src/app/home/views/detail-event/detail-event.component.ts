@@ -19,7 +19,7 @@ export class DetailEventComponent implements OnInit{
   constructor(private route:ActivatedRoute, private firebaseService : FirebaseService){
   }
 
-  public selected!: Date | null;
+  public selectedDate: Date = new Date();
   public eventID: string = "";
   public taskCollectionData: any = [];
   public listTasksDone: Task[] = [];
@@ -107,7 +107,7 @@ export class DetailEventComponent implements OnInit{
   }
 
   async createTask(){
-    await this.firebaseService.createTask({...this.newTask, id_event: this.eventID, status: StatusEvent.progress });
+    await this.firebaseService.createTask({...this.newTask, id_event: this.eventID, status: StatusEvent.progress, date_echeance: new Date(this.selectedDate).toString()});
     this.showFormCreateTask = false;
     this.newTask = {};
   }

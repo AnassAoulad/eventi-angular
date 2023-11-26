@@ -59,6 +59,13 @@
                 <textarea [(ngModel)]="newTask.description" rows="2" cols="30" matInput placeholder="Description"></textarea>
             </mat-form-field>
             <mat-form-field>
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" name="date">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            <mat-form-field>
                 <mat-label>User Task</mat-label>
                 <mat-select [(ngModel)]="newTask.id_user" name="user">
                     <mat-option *ngFor="let user of listUsers" [value]="user.id">{{user.prenom}}{{user.nom}}</mat-option>
