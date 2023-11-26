@@ -1,0 +1,33 @@
+<div class="content">
+    <div card-content *ngIf="!editMode">
+        <p name>{{task.name}}</p>
+        <p>description : {{task.description}}</p>
+        <p>à réaliser avant le : {{date | date}}</p>
+        <p>assigné à : <span user>{{user?.prenom}} {{user?.nom}}</span></p>
+    </div>
+    <div edit-mode *ngIf="editMode">
+        <span> 
+            <label id="name">Name</label>
+            <input [(ngModel)]="task.name" title="name">
+        </span>
+       <span>
+            <label id="name">Description</label>
+            <input [(ngModel)]="task.description" title="description">
+       </span>
+       <span>
+        <mat-form-field>
+            <mat-label>User Task</mat-label>
+            <mat-select [(ngModel)]="user" name="user" (selectionChange)="updateUserTask($event)">
+                <mat-option *ngFor="let user of listUsers" [value]="user">{{user.prenom}}{{user.nom}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+       </span>
+    </div>
+    <div button-content>
+        <button edit (click)="editMode = true" *ngIf="!editMode">edit</button>
+        <button delete (click)="deleteTask()" *ngIf="!editMode">delete</button>
+        <button (click)="updateStatusTask()" *ngIf="!editMode">{{task.status === "done" ? "progress" : "done"}}</button>
+        <button save (click)="updateTask()" *ngIf="editMode">save</button>
+    </div>
+</div>
+

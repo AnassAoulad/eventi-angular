@@ -1,0 +1,45 @@
+:host {
+    div[dropdown-content]{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        div[dj],div[traiteur]{
+            display: flex;
+            gap: 10px;
+        }
+        div[create-task]{
+            div[edit-mode]{
+                width: 300px;
+                height: auto;
+                padding: 10px;
+                border: 1px solid black;
+                align-items: center;
+                margin-top: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                span{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 10px;
+                }
+            }
+        }
+        button{
+            width: 90px;
+            height: 40px;
+            &[createTask]{
+                width: 60px;
+                height: 20px;
+                background-color: blue;
+                color: white;
+            }
+        }
+    }
+    div[tasks-content]{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+}
