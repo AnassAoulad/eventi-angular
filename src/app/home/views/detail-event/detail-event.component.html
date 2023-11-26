@@ -7,7 +7,11 @@
                 <mat-option *ngFor="let dj of listDJ" [value]="dj">{{dj.name}}</mat-option>
             </mat-select>
           </mat-form-field>
+<<<<<<< HEAD
         <button style="width: auto;" mat-fab extended color="primary" (click)="showInfoDj = !showInfoDj">Show info DJ</button>
+=======
+        <button (click)="showInfoDj = !showInfoDj">Show info DJ</button>
+>>>>>>> creation-list-events
         <div info-dj *ngIf="showInfoDj">
             <p>name : {{dj.name}}<br>
             description : {{dj.description}}<br>
@@ -22,7 +26,11 @@
                 <mat-option *ngFor="let traiteur of listTraiteur" [value]="traiteur">{{traiteur.name}}</mat-option>
             </mat-select>
           </mat-form-field>
+<<<<<<< HEAD
         <button style="width: auto;" mat-fab extended color="primary" (click)="showInfoTraiteur = !showInfoTraiteur">Show info Traiteur</button>
+=======
+        <button (click)="showInfoTraiteur = !showInfoTraiteur">Show info Traiteur</button>
+>>>>>>> creation-list-events
         <div info-traiteur *ngIf="showInfoTraiteur">
             <p>name : {{traiteur.name}}<br>
             description : {{traiteur.description}}<br>
@@ -30,6 +38,7 @@
             phone : {{traiteur.phone}}</p>
         </div>
     </div>
+<<<<<<< HEAD
     <div create-task >
         
         
@@ -44,16 +53,35 @@
            
             <textarea [(ngModel)]="newTask.description" style="margin-top: 20px;margin-bottom: 20px;" rows="5" cols="30" matInput placeholder="Description"></textarea>
             
+=======
+    <div create-task>
+        <button (click)="showFormCreateTask = !showFormCreateTask">+ Create task</button>
+        <div edit-mode *ngIf="showFormCreateTask">
+            <span> 
+                <label id="name">Name</label>
+                <input [(ngModel)]="newTask.name" title="name">
+            </span>
+           <span>
+                <label id="name">Description</label>
+                <input [(ngModel)]="newTask.description" title="description">
+           </span>
+           <span>
+>>>>>>> creation-list-events
             <mat-form-field>
                 <mat-label>User Task</mat-label>
                 <mat-select [(ngModel)]="newTask.id_user" name="user">
                     <mat-option *ngFor="let user of listUsers" [value]="user.id">{{user.prenom}}{{user.nom}}</mat-option>
                 </mat-select>
             </mat-form-field>
+<<<<<<< HEAD
             </p>
                 
            
            <button mat-fab extended color="primary" createTask (click)="createTask()">Create</button>
+=======
+           </span>
+           <button createTask (click)="createTask()">Create</button>
+>>>>>>> creation-list-events
         </div>
     </div>
 </div>
@@ -66,6 +94,7 @@
 <h2>Taches terminées :</h2>
 <div tasks-content>
 <app-item-task *ngFor="let task of listTasksDone" [task]="task" [listUsers]="listUsers" [user]="getUserPerTask(task)" (onUpdate)="updateTask($event)" (onDelete)="deleteTask($event)"></app-item-task>
+<<<<<<< HEAD
 </div>
 
 <h2>Evenements à venir :</h2>
@@ -99,4 +128,6 @@
         <mat-grid-tile>3</mat-grid-tile>
         <mat-grid-tile>4</mat-grid-tile>
       </mat-grid-list>    
+=======
+>>>>>>> creation-list-events
 </div>

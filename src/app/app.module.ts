@@ -8,17 +8,28 @@ import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> creation-list-events
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+<<<<<<< HEAD
     AppRoutingModule, CoreModule, SharedModule, HomeModule, BrowserAnimationsModule,
     
   ],
   providers: [],
   bootstrap: [AppComponent],
  })
+=======
+    AppRoutingModule, CoreModule, SharedModule, HomeModule, BrowserAnimationsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+>>>>>>> creation-list-events
 export class AppModule { }
