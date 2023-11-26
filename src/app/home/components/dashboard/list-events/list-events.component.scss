@@ -1,0 +1,12 @@
+:host{
+    div[events-content]{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        background-color: #f8f5f3;
+    }
+    h3{
+        text-align: center;
+        text-decoration: underline;
+    }
+}
