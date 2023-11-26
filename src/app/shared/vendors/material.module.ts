@@ -9,15 +9,16 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatInputModule} from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 const materialModules: any[] = [MatFormFieldModule, MatSelectModule, MatButtonModule,MatIconModule,MatTooltipModule,MatCardModule,MatDatepickerModule,MatNativeDateModule,
-  MatGridListModule, MatInputModule
+  MatGridListModule, MatInputModule, MatToolbarModule
   ];
 
 @NgModule({
-    imports: [...materialModules],
-    exports: [...materialModules],
-  })
+  imports: [...materialModules],
+  exports: [...materialModules],
+})
 
-  export class MaterialModule {}
+export class MaterialModule { }
