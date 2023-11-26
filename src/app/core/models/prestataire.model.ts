@@ -9,6 +9,6 @@ export interface Prestataire{
 }
 
 export enum ServiceType {
-    dj = "dj",
-    traiteur = "traiteur"
+    dj = 'dj',
+    traiteur = 'traiteur'
 }
