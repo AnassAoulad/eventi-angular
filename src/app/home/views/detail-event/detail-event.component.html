@@ -6,7 +6,7 @@
             <mat-select [(ngModel)]="dj" name="dj" (selectionChange)="updateDjEvent($event)">
                 <mat-option *ngFor="let dj of listDJ" [value]="dj">{{dj.name}}</mat-option>
             </mat-select>
-          </mat-form-field>
+        </mat-form-field>
         <button (click)="showInfoDj = !showInfoDj">Show info DJ</button>
         <div info-dj *ngIf="showInfoDj">
             <p>name : {{dj.name}}<br>
@@ -21,7 +21,7 @@
             <mat-select [(ngModel)]="traiteur" name="traiteur" (selectionChange)="updateTraiteurEvent($event)">
                 <mat-option *ngFor="let traiteur of listTraiteur" [value]="traiteur">{{traiteur.name}}</mat-option>
             </mat-select>
-          </mat-form-field>
+        </mat-form-field>
         <button (click)="showInfoTraiteur = !showInfoTraiteur">Show info Traiteur</button>
         <div info-traiteur *ngIf="showInfoTraiteur">
             <p>name : {{traiteur.name}}<br>
@@ -37,19 +37,19 @@
                 <label id="name">Name</label>
                 <input [(ngModel)]="newTask.name" title="name">
             </span>
-           <span>
+            <span>
                 <label id="name">Description</label>
                 <input [(ngModel)]="newTask.description" title="description">
-           </span>
-           <span>
-            <mat-form-field>
-                <mat-label>User Task</mat-label>
-                <mat-select [(ngModel)]="newTask.id_user" name="user">
-                    <mat-option *ngFor="let user of listUsers" [value]="user.id">{{user.prenom}}{{user.nom}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-           </span>
-           <button createTask (click)="createTask()">Create</button>
+            </span>
+            <span>
+                <mat-form-field>
+                    <mat-label>User Task</mat-label>
+                    <mat-select [(ngModel)]="newTask.id_user" name="user">
+                        <mat-option *ngFor="let user of listUsers" [value]="user.id">{{user.prenom}}{{user.nom}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </span>
+            <button createTask (click)="createTask()">Create</button>
         </div>
     </div>
 </div>

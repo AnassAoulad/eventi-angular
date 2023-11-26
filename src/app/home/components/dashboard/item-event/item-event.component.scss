@@ -1,36 +1,54 @@
-:host{
+:host {
     .content {
         background-color: rgb(201, 201, 201);
         width: 200px;
-        height: 100px;
+        height: 60px;
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 25px;
         border: 1px solid black;
 
-        p[title]{
+        p[title] {
             text-align: center;
             font-size: 16px;
             font-weight: 500;
+            margin: 0;
         }
 
-        div[button-content]{
+        div[button-content] {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
             gap: 5px;
-            button{
-                &[edit]{
+
+            button {
+                &[edit] {
                     background-color: rgb(131, 131, 255);
                 }
-                &[delete]{
+                &[delete] {
                     background-color: red;
                 }
-                &[save]{
+                &[save] {
                     background-color: green;
                 }
             }
-        } 
+        }
+    }
+
+    .edit-button, .save-button, .delete-button {
+        border-radius: 50%;
+        background-color: #4CAF50;
+        color: #FFF;
+        border: none;
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+        cursor: pointer;
+        margin-right: 5px;
+    }
+    
+    .delete-button {
+        background-color: red;
     }
 }
