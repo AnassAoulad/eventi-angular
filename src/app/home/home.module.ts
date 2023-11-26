@@ -10,33 +10,13 @@ import { DetailEventComponent } from './views/detail-event/detail-event.componen
 import { ItemTaskComponent } from './components/detail-event/item-task/item-task.component';
 import { SharedModule } from '../shared/shared.module';
 
-<<<<<<< HEAD
-import {MatIconModule} from '@angular/material/icon';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
-
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatGridListModule} from '@angular/material/grid-list';
-=======
-
->>>>>>> creation-list-events
 
 @NgModule({
   declarations: [
     DashboardComponent, HomeComponent, ListEventsComponent, ItemEventComponent, DetailEventComponent, ItemTaskComponent
   ],
   imports: [
-<<<<<<< HEAD
     CommonModule, HomeRoutingModule, FormsModule, SharedModule,
-    MatButtonModule,MatIconModule,MatTooltipModule,MatCardModule,
-    MatFormFieldModule,MatDatepickerModule,MatNativeDateModule,
-    MatGridListModule
-=======
-    CommonModule, HomeRoutingModule, FormsModule, SharedModule
->>>>>>> creation-list-events
   ]
 })
 export class HomeModule { }

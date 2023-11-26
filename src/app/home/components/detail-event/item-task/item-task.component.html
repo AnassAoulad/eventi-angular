@@ -1,18 +1,11 @@
 <div class="content">
     <div card-content *ngIf="!editMode">
-<<<<<<< HEAD
         <mat-card>
             <mat-card-header><p name>{{task.name}}</p></mat-card-header>
             <mat-card-content color="primary">Description : {{task.description}}</mat-card-content>
             <mat-card-content>A réaliser avant le : {{date | date}}</mat-card-content>
             <mat-card-content>Assigné à : {{user?.prenom}} {{user?.nom}}</mat-card-content>
         </mat-card>
-=======
-        <p name>{{task.name}}</p>
-        <p>description : {{task.description}}</p>
-        <p>à réaliser avant le : {{date | date}}</p>
-        <p>assigné à : <span user>{{user?.prenom}} {{user?.nom}}</span></p>
->>>>>>> creation-list-events
     </div>
     <div edit-mode *ngIf="editMode">
         <span> 
@@ -32,7 +25,6 @@
         </mat-form-field>
        </span>
     </div>
-<<<<<<< HEAD
     <div button-content style="padding-top: 20px;">
         <button (click)="editMode = true" *ngIf="!editMode" mat-fab extended color="primary">
             <mat-icon>edit</mat-icon>
@@ -43,7 +35,7 @@
             Delete
           </button>  
           <button (click)="updateStatusTask()" *ngIf="!editMode"  mat-fab extended color="accent">
-            <mat-icon>done</mat-icon>
+            <mat-icon>{{task.status === "done" ? "progress" : "done"}}</mat-icon>
             Done
           </button>  
           <button (click)="updateTask()" *ngIf="editMode"  mat-fab extended color="accent">
@@ -51,13 +43,6 @@
             Save
           </button>  
        
-=======
-    <div button-content>
-        <button edit (click)="editMode = true" *ngIf="!editMode">edit</button>
-        <button delete (click)="deleteTask()" *ngIf="!editMode">delete</button>
-        <button (click)="updateStatusTask()" *ngIf="!editMode">{{task.status === "done" ? "progress" : "done"}}</button>
-        <button save (click)="updateTask()" *ngIf="editMode">save</button>
->>>>>>> creation-list-events
     </div>
 </div>
 
