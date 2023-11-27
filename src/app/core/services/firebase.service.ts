@@ -31,8 +31,6 @@ export class FirebaseService {
 		this.userCol = collection(this.db, 'Utilisateurs')
 		this.prestataireCol = collection(this.db, 'Prestataire')
 
-		// Get Realtime Data
-
 		onSnapshot(this.taskCol, (snapshot) => {
 			this.updatedSnapshotTask.next(snapshot)
 		}, (err) => {
@@ -44,8 +42,6 @@ export class FirebaseService {
 		}, (err) => {
 			console.log(err)
 		})
-
-   
 	}
 
 	async getEvents() {
@@ -64,13 +60,6 @@ export class FirebaseService {
 		}
 	}
 
-	async createUser(user: Partial<User>) {
-		await addDoc(this.userCol, {
-			...user
-		})
-		return
-	}
-
 	async createEvent(event: Evenement) {
 		await addDoc(this.eventCol, {
 			...event
@@ -78,30 +67,20 @@ export class FirebaseService {
 		return
 	}
 
-	async deleteEvent(id: string) {
-		const docRef = doc(this.db, 'Evenement', id)
-		await deleteDoc(docRef)
-	}
-
 	async updateEvent(event: Evenement) {
 		const docRef = doc(this.db, 'Evenement', event.id)
 		await updateDoc(docRef, { ...event })
+	}
+
+	async deleteEvent(id: string) {
+		const docRef = doc(this.db, 'Evenement', id)
+		await deleteDoc(docRef)
 	}
 
 	async getTasksById(idEvent: string) {
 		const q = query(this.taskCol, where('id_event', '==', idEvent))
 		const snapshot = await getDocs(q)
 		return snapshot
-	}
-
-	async deleteTask(id: string) {
-		const docRef = doc(this.db, 'Taches', id)
-		await deleteDoc(docRef)
-	}
-
-	async updateTask(task: Task) {
-		const docRef = doc(this.db, 'Taches', task.id)
-		await updateDoc(docRef, { ...task })
 	}
 
 	async createTask(task: Partial<Task>) {
@@ -111,11 +90,14 @@ export class FirebaseService {
 		return
 	}
 
-	async createPrestataire(prestataire: Partial<Prestataire>) {
-		await addDoc(this.prestataireCol, {
-			...prestataire
-		})
-		return
+	async updateTask(task: Task) {
+		const docRef = doc(this.db, 'Taches', task.id)
+		await updateDoc(docRef, { ...task })
+	}
+
+	async deleteTask(id: string) {
+		const docRef = doc(this.db, 'Taches', id)
+		await deleteDoc(docRef)
 	}
 
 	async getPrestataireByType(type: ServiceType){
@@ -124,9 +106,22 @@ export class FirebaseService {
 		return snapshot
 	}
 
+	async createPrestataire(prestataire: Partial<Prestataire>) {
+		await addDoc(this.prestataireCol, {
+			...prestataire
+		})
+		return
+	}
+
 	async getUsers(){
 		const snapshot = await getDocs(this.userCol)
 		return snapshot
 	}
-  
+
+	async createUser(user: Partial<User>) {
+		await addDoc(this.userCol, {
+			...user
+		})
+		return
+	}
 }
