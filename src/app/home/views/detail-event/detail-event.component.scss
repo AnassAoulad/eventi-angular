@@ -4,11 +4,25 @@
         flex-direction: column;
         margin-bottom: 10px;
 
-        div[dj],div[traiteur]{
+        div[prestataire]{
             display: flex;
             gap: 10px;
         }
+        div[button-content]{
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-bottom: 20px;
+            button{
+                font-size: 12px;
+                width: 150px;
+                height: 40px;
+            }
+        }
         div[create-task]{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
             div[edit-mode]{
                 width: 300px;
                 height: auto;
@@ -24,6 +38,10 @@
                     flex-direction: row;
                     gap: 10px;
                 }
+                textarea{
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                }
             }
         }
         button{
@@ -38,8 +56,30 @@
         }
     }
     div[tasks-content]{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    div[collab-content]{
         display: flex;
         flex-direction: row;
         gap: 10px;
+    }
+    div[avatar]
+    {
+        color: black; 
+        padding: 4px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius:100%;
+        width:70px;
+        height: 70px;
+        font-weight: 600;
+        background:paleturquoise
+    }
+    mat-grid-tile[BackTile]
+    {
+        background: lightblue;
     }
 }

@@ -3,13 +3,12 @@ export interface User {
     nom: string,
     prenom: string,
     email: string,
-    password: string,
     role: Role
 }
 
 export enum Role {
-    admin = "admin",
-    manager = "manager",
-    salarie = "salarie",
-    visiteur = "visiteur"
+    admin = 'admin',
+    manager = 'manager',
+    salarie = 'salarie',
+    visiteur = 'visiteur'
 }

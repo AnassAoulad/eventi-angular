@@ -4,41 +4,39 @@ import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import {
-  canActivate,
-  redirectLoggedInTo,
-  redirectUnauthorizedTo,
-} from '@angular/fire/auth-guard';
+	canActivate,
+	redirectUnauthorizedTo,
+} from '@angular/fire/auth-guard'
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login'])
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home-page',
-    pathMatch: 'full',
-  },
-  {
-    path:'home-page',
-    component: HomePageComponent,
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-    ...canActivate(redirectUnauthorizedToLogin)
-  },
-  {
-    path: 'register',
-    component: RegisterComponent,
-  },
+	{
+		path: '',
+		redirectTo: 'home-page',
+		pathMatch: 'full',
+	},
+	{
+		path: 'home-page',
+		component: HomePageComponent,
+	},
+	{
+		path: 'login',
+		component: LoginComponent,
+	},
+	{
+		path: 'home',
+		loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+		...canActivate(redirectUnauthorizedToLogin)
+	},
+	{
+		path: 'register',
+		component: RegisterComponent,
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }

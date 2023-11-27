@@ -4,5 +4,14 @@
   font-family: 'Bugaki';
   src: url('./assets/fonts/Bugaki.ttf') format('truetype');
 }
-html, body { height: 100%; }
-body { margin: 10; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #F8F5F3; }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 10;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #F8F5F3;
+}

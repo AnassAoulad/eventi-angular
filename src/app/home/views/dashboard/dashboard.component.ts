@@ -1,47 +1,58 @@
-import { Component, OnInit } from '@angular/core';
-import { DocumentData, QuerySnapshot } from 'firebase/firestore';
-import { Evenement } from 'src/app/core/models/event.model';
-import { FirebaseService } from 'src/app/core/services/firebase.service';
+import { Component, OnInit } from '@angular/core'
+import { DocumentData, QuerySnapshot } from 'firebase/firestore'
+import { Evenement } from 'src/app/core/models/event.model'
+import { FirebaseService } from 'src/app/core/services/firebase.service'
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+	selector: 'app-dashboard',
+	templateUrl: './dashboard.component.html',
+	styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit{
 
-  public eventCollectiondata: any = [];
-  public eventDetail: Evenement = {name: "", description: "", id:"", id_dj: "", id_traiteur: ""}
+	public editMode: boolean = false
 
-  constructor(private firebaseService: FirebaseService){}
+	public eventCollectiondata: any = []
+	public event: Evenement = {name: '', description: '', id:'', id_dj: '', id_traiteur: '', id_photographe:'', lieu: ''}
 
-  ngOnInit(): void {
-    this.get();
-    this.firebaseService.obsr_UpdatedSnapshotEvent.subscribe((snapshot) => {
-      this.updateEventCollection(snapshot);
-    })
-  }
+	constructor(private firebaseService: FirebaseService){}
 
-  async get() {
-    const snapshot = await this.firebaseService.getEvents();
-    this.updateEventCollection(snapshot);
-  }
+	ngOnInit(): void {
+		this.get()
+		this.firebaseService.obsr_UpdatedSnapshotEvent.subscribe((snapshot) => {
+			this.updateEventCollection(snapshot)
+		})
+	}
 
-  public updateEventCollection(snapshot: QuerySnapshot<DocumentData>) {
-    this.eventCollectiondata = [];
-    snapshot.docs.forEach((student) => {
-      this.eventCollectiondata.push({ ...student.data(), id: student.id });
-    })
-  }
+	async get() {
+		const snapshot = await this.firebaseService.getEvents()
+		this.updateEventCollection(snapshot)
+	}
 
-  async updateEvent(event: Evenement){
-    await this.firebaseService.updateEvent(event);
-  }
+	public updateEventCollection(snapshot: QuerySnapshot<DocumentData>) {
+		this.eventCollectiondata = []
+		snapshot.docs.forEach((student) => {
+			this.eventCollectiondata.push({ ...student.data(), id: student.id })
+		})
+	}
 
-  async deleteEvent(id: string){
-    await this.firebaseService.deleteEvent(id)
-  }
+	async createEvent(){
+		await this.firebaseService.createEvent(this.event)
+		this.cancelForm()
+	}
 
+	async updateEvent(event: Evenement){
+		await this.firebaseService.updateEvent(event)
+	}
 
+	async deleteEvent(id: string){
+		await this.firebaseService.deleteEvent(id)
+	}
+
+	public cancelForm(){
+		this.event.name = ''
+		this.event.description= ''
+		this.editMode = false
+	}
 
 }
