@@ -1,6 +1,6 @@
-:host{
+:host {
     .content {
-        background-color: rgb(218, 218, 218);
+        background-color: rgb(240, 238, 238);
         width: auto;
         min-width: 200px;
         height: auto;
@@ -9,42 +9,55 @@
         border: 1px solid black;
         margin-bottom: 10px;
 
-        p[name]{
+        .content-card {
+            padding-top: 10px;
+            padding-left: 10px;
+            font-size: 15px;
+        }
+
+        p[name] {
             text-align: center;
             font-size: 16px;
             font-weight: 500;
         }
-        span[user]{
+
+        span[user] {
             font-weight: 500;
         }
 
-        div[edit-mode]{
+        div[edit-mode] {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            span{
+
+            span {
                 display: flex;
                 flex-direction: column;
             }
         }
-        div[button-content]{
+
+        div[button-content] {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
             gap: 5px;
-            button{
+
+            button {
                 height: 35px;
-                &[edit]{
+
+                &[edit] {
                     background-color: rgb(131, 131, 255);
                 }
-                &[delete]{
+
+                &[delete] {
                     background-color: red;
                 }
-                &[save]{
+
+                &[save] {
                     background-color: green;
                 }
             }
-        }   
+        }
     }
 }
