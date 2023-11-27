@@ -4,4 +4,6 @@ export interface Evenement {
     description: string,
     id_dj: string,
     id_traiteur: string,
+    id_photographe: string,
+    lieu: string,
 }

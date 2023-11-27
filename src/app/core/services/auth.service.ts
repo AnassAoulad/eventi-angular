@@ -2,21 +2,24 @@ import { Injectable } from '@angular/core';
 import {
   Auth,
   signInWithEmailAndPassword,
-  authState,
   createUserWithEmailAndPassword,
   UserCredential,
 } from '@angular/fire/auth';
-import { concatMap, from, Observable, of, switchMap } from 'rxjs';
+import { from, Observable } from 'rxjs';
+import { FirebaseService } from './firebase.service';
+import { Role } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth, private firebaseService: FirebaseService) { }
 
-  register(email: string, password: string): Observable<UserCredential> {
-    return from(createUserWithEmailAndPassword(this.auth, email, password))
+  register(name: string, email: string, password: string, role: Role): Observable<UserCredential> {
+    const request = createUserWithEmailAndPassword(this.auth, email, password);
+    request.then(() => this.firebaseService.createUser({prenom: name, email: email, role: role}))
+    return from(request);
   }
 
   login(email: string, password: string): Observable<any> {

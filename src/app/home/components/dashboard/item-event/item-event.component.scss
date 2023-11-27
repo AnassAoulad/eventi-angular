@@ -1,8 +1,8 @@
 :host{
     .content {
         background-color: rgb(201, 201, 201);
-        width: 200px;
-        height: 100px;
+        width: 265px;
+        height: auto;
         padding: 10px;
         margin-bottom: 10px;
         border-radius: 25px;
@@ -13,6 +13,10 @@
             font-size: 16px;
             font-weight: 500;
         }
+        div[edit-mode]{
+            display: flex;
+            flex-direction: column;
+        }
 
         div[button-content]{
             display: flex;
@@ -20,11 +24,17 @@
             justify-content: center;
             align-items: center;
             gap: 5px;
+            margin-top: 10px;
             button{
+                width: auto; 
+                height: 35px;
                 &[edit]{
                     background-color: rgb(131, 131, 255);
                 }
                 &[delete]{
+                    background-color: red;
+                }
+                &[cancel]{
                     background-color: red;
                 }
                 &[save]{

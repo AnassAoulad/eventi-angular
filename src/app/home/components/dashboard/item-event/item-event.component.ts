@@ -9,7 +9,7 @@ import { Evenement } from 'src/app/core/models/event.model';
 })
 export class ItemEventComponent {
 
-  @Input() event: Evenement = {id: '', name: '', description: '', id_dj: '', id_traiteur:''};
+  @Input() event: Partial<Evenement> = {};
   @Output() onUpdate = new EventEmitter();
   @Output() onDelete = new EventEmitter();
 

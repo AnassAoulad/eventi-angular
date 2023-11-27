@@ -10,7 +10,7 @@ const sharedModules: any[] = [
 @NgModule({
   declarations: [],
   imports: [
-    ...sharedModules
+    ...sharedModules,
   ],
   exports: [...sharedModules]
 })

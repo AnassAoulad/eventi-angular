@@ -15,6 +15,7 @@ import { RegisterComponent } from './authentification/register/register.componen
 import { FormGroup, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { environment } from 'src/environments/environment';
     RegisterComponent,
   ],
   imports: [
+    MatInputModule,
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
@@ -35,6 +37,6 @@ import { environment } from 'src/environments/environment';
     provideFirestore(() => getFirestore())
   ],
   providers: [],
-  bootstrap: [AppComponent]
-})
+  bootstrap: [AppComponent],
+ })
 export class AppModule { }

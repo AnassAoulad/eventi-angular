@@ -10,10 +10,11 @@
         <input [(ngModel)]="event.description" title="description">
     </div>
     <div button-content>
-        <button edit (click)="editMode = true" *ngIf="!editMode">edit</button>
-        <button delete (click)="deleteEvent()" *ngIf="!editMode">delete</button>
-        <button detail (click)="detailEvent()" *ngIf="!editMode">detail</button>
-        <button save (click)="updateEvent()" *ngIf="editMode">save</button>
+        <button mat-fab extended color="primary" edit (click)="editMode = true" *ngIf="!editMode">edit</button>
+        <button mat-fab extended color="warn" delete (click)="deleteEvent()" *ngIf="!editMode">delete</button>
+        <button mat-fab extended color="accent" detail (click)="detailEvent()" *ngIf="!editMode">detail</button>
+        <button mat-fab extended color="warn" cancel (click)="updateEvent()" *ngIf="editMode">cancel</button>
+        <button mat-fab extended color="accent" save (click)="updateEvent()" *ngIf="editMode">save</button>
     </div>
 </div>
 

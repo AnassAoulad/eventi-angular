@@ -10,21 +10,19 @@ import { User } from 'src/app/core/models/user.model';
   styleUrls: ['./item-task.component.scss']
 })
 export class ItemTaskComponent implements OnInit {
-  public date:any;
   public editMode: boolean = false;
 
-  @Input() task: Partial<Task> = {id: '', name: '', description: '', id_event: "", id_user:"", status: StatusEvent.progress};
+  @Input() task: Partial<Task> = {id: '', name: '', description: '', id_event: "", id_user:"", status: StatusEvent.progress, date_echeance: new Date().toString()};
   @Input() listUsers: User[] = [];
   @Input() user: any;
   @Output() onUpdate = new EventEmitter();
   @Output() onDelete = new EventEmitter();
 
   ngOnInit(): void {
-    this.date = this.task?.date_echeance?.toDate();
   }
 
   public updateTask(){
-    this.onUpdate.emit(this.task);
+    this.onUpdate.emit({...this.task, date_echeance: this.task.date_echeance?.toString()});
     this.editMode = false;
   }
 

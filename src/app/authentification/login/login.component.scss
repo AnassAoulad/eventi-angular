@@ -1,4 +1,54 @@
-.sign-up-link {
-  font-size: 1.2rem;
-  margin-left: 8px;
+html,
+body {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.form-container {
+  max-width: 400px;
+  border-radius: 8px;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+
+  mat-form-field {
+    width: 100%;
+
+    input {
+      border-radius: 50px;
+      height: 20px;
+      width: 100%;
+      padding: 8px 0 8px 8px;
+    }
+  }
+
+  .register-link {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  button {
+    background-color: rgb(205, 197, 253);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px;
+    font-weight: bold;
+    height: 1.9rem;
+    margin-bottom: 10px;
+    width: 9.25rem;
+
+    &:hover {
+      text-decoration: underline;
+      background-color: rgb(205, 197, 253, 0.7);
+    }
+  }
 }
