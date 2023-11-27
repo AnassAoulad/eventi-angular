@@ -105,17 +105,17 @@
     </div>
 </div>
 
-<h2>Taches en cours :</h2>
+<h2>Tasks in progress :</h2>
 <div tasks-content>
 <app-item-task *ngFor="let task of listTasksInProgress" [task]="task" [listUsers]="listUsers" [user]="getUserPerTask(task)" (onUpdate)="updateTask($event)" (onDelete)="deleteTask($event)"></app-item-task>
 </div>
 
-<h2>Taches terminées :</h2>
+<h2>Tasks done :</h2>
 <div tasks-content>
 <app-item-task *ngFor="let task of listTasksDone" [task]="task" [listUsers]="listUsers" [user]="getUserPerTask(task)" (onUpdate)="updateTask($event)" (onDelete)="deleteTask($event)"></app-item-task>
 </div>
 
-<h2>Collaborateurs :</h2>
+<h2>Collaborators :</h2>
 <div collab-content>
     <div avatar *ngFor="let user of getCollab()"> 
         <img src="url"> {{user.prenom}} {{user.nom}}

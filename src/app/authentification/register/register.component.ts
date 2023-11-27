@@ -10,6 +10,7 @@ import {
 } from '@angular/forms'
 import { Router } from '@angular/router'
 import { AuthService } from '../../core/services/auth.service'
+import { Role } from 'src/app/core/models/user.model'
 
 export function passwordsMatchValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -30,12 +31,16 @@ export function passwordsMatchValidator(): ValidatorFn {
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+
+  public roles = Object.values(Role);
+ 
   registerForm = this.fb.group(
     {
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
+      role: [Role.visiteur, Validators.required],
     },
     { validators: passwordsMatchValidator() }
   )
@@ -64,15 +69,19 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('name')
   }
 
-  submit() {
-    const { name, email, password } = this.registerForm.value
+  get role() {
+    return this.registerForm.get('role')
+  }
 
-    if (!this.registerForm.valid || !name || !password || !email) {
+  submit() {
+    const { name, email, password, role} = this.registerForm.value
+
+    if (!this.registerForm.valid || !name || !password || !email || !role) {
       return
     }
 
     this.authService
-      .register(email, password)
+      .register(name, email, password, role)
       .subscribe(() => {
         this.router.navigate(['/home'])
       })

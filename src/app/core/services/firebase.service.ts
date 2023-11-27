@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Evenement } from '../models/event.model';
 import { Task } from '../models/task.model';
 import { Prestataire, ServiceType } from '../models/prestataire.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +62,13 @@ export class FirebaseService {
       console.log("No such document!");
       return;
     }
+  }
+
+  async createUser(user: Partial<User>) {
+    await addDoc(this.userCol, {
+      ...user
+    })
+    return;
   }
 
   async createEvent(event: Evenement) {

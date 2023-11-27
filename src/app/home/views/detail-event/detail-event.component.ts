@@ -140,7 +140,8 @@ export class DetailEventComponent implements OnInit{
   }
 
   public getCollab(){
-    const listUserTask = this.taskCollectionData.flatMap((data: Task) => data.id_user);
+    const taskCollection = this.listTasksDone.concat(this.listTasksInProgress);
+    const listUserTask = taskCollection.flatMap((data: Task) => data.id_user);
     return this.listUsers.filter((data: User)=> listUserTask.includes(data.id));
   }
   

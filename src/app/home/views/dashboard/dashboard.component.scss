@@ -19,10 +19,16 @@
         background-color: #f8f5f3;
     }
     button{
-        width: 150px;
-        height: 40px;
-        font-size: 12px;
-        margin-bottom: 20px;
+        width: 100px;
+        font-size: 10px;
+        height: 30px;
+        margin-bottom: 10px;
+        &[create]{
+            width: 150px;
+            height: 40px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }   
     }
 
 }

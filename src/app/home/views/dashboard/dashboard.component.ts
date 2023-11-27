@@ -38,6 +38,7 @@ export class DashboardComponent implements OnInit{
 
   async createEvent(){
     await this.firebaseService.createEvent(this.event);
+    this.cancelForm();
   }
 
   async updateEvent(event: Evenement){

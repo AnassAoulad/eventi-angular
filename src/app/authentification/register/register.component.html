@@ -23,6 +23,12 @@
         Confirm Password is required
       </mat-error>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role" name="service">
+          <mat-option *ngFor="let role of roles" [value]="role">{{role}}</mat-option>
+      </mat-select>
+    </mat-form-field>
     <mat-error *ngIf="registerForm.errors?.['passwordsDontMatch']">
       Passwords should match
     </mat-error>
