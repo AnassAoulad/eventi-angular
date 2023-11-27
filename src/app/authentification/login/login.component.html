@@ -1,43 +1,25 @@
-<!-- Logo en haut à gauche -->
-<img src="../../assets/logoEventi.png" alt="Logo" style="position: absolute; top: 50px; left: 50px; width: 100px; height: 62.65px;">
-
-<!-- Formulaire de connexion -->
-<div class="form-container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-  <h1 style="color: #000; font-family: 'Bugaki'; font-size: 24px; font-style: normal; font-weight: 400; line-height: normal;">Connexion</h1>
-
+<div class="form-container mat-elevation-z5">
+  <h1>Login</h1>
   <form [formGroup]="loginForm" (ngSubmit)="submit()">
-
-    <!-- Label et champ Email -->
-    <div class="form-field" style="margin-top: 40px; text-align: left;">
-      <div style="display: flex; flex-direction: column;">
-        <label for="email" class="input-label">Email</label>
-        <input id="email" placeholder="Email address" formControlName="email" class="styled-input" />
-      </div>
-      <div *ngIf="email?.errors?.['required'] || email?.errors?.['email']" style="color: red; font-size: 12px; margin-top: 5px;">
-        {{ email?.errors?.['required'] ? 'Email requis' : 'Merci d\'entrer un email valide' }}
-      </div>
+    <mat-form-field>
+      <input matInput placeholder="Email address" formControlName="email" />
+      <mat-error *ngIf="email?.errors?.['required']">
+        Email address is required
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Password" formControlName="password" />
+      <mat-error *ngIf="password?.errors?.['required']">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+    <div class="center margin-top">
+      <button type="submit" mat-raised-button color="primary">Login</button>
     </div>
-
-    <!-- Label et champ Mot de passe -->
-    <div class="form-field" style="margin-top: 25px; text-align: left;">
-      <div style="display: flex; flex-direction: column;">
-        <label for="password" class="input-label">Password</label>
-        <input id="password" type="password" placeholder="Password" formControlName="password" class="styled-input" />
-      </div>
-      <div *ngIf="password?.errors?.['required']" style="color: red; font-size: 12px; margin-top: 5px;">
-        Mot de passe requis
-      </div>
-    </div>
-
-    <!-- Bouton "Login" -->
-    <div class="center margin-top" style="margin-top: 40px;">
-      <button type="submit" style="color: #373636; font-family: 'Bugaki'; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; width: 200px; height: 40px; border: none; border-radius: 30px; background: #CDC5FD;">Connexion</button>
-    </div>
-
-    <!-- Lien d'inscription -->
-    <div class="center margin-top" style="margin-top: 25px; color: #000; font-family: 'Klein Text Trial'; font-size: 14px; font-style: normal; font-weight: 350; line-height: normal;">
-      Nouveau sur l'application ? <a class="register-link" routerLink="/register">S'inscrire !</a>
-    </div>
-
+    <span class="center margin-top">New to our platform? <a class="register-link" routerLink="/register">Sign
+        up!</a></span>
   </form>
 </div>

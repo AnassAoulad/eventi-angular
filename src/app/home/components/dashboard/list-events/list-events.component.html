@@ -1,4 +1,4 @@
-<h2>Taches a faire</h2>
+<h3>Liste des events</h3>
 <div events-content>
 <app-item-event *ngFor="let event of events" [event]="event" (onUpdate)="updateEvent($event)" (onDelete)="deleteEvent($event)"></app-item-event>
 </div>

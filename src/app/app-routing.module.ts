@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './authentification/login/login.component';
 import { RegisterComponent } from './authentification/register/register.component';
-import { HomePageComponent } from './home-page/home-page.component';
 import {
   canActivate,
   redirectLoggedInTo,
@@ -15,12 +14,8 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'homePage',
+    redirectTo: 'login',
     pathMatch: 'full',
-  },
-  {
-    path:'homePage',
-    component: HomePageComponent,
   },
   {
     path: 'login',
