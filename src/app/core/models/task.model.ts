@@ -1,5 +1,3 @@
-import { Timestamp } from "firebase/firestore";
-
 export interface Task {
     id: string,
     name: string,
@@ -11,7 +9,7 @@ export interface Task {
 }
 
 export enum StatusEvent {
-    new = "new",
-    progress = "progress",
-    done = "done"
+    new = 'new',
+    progress = 'progress',
+    done = 'done'
 }
