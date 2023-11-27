@@ -4,7 +4,7 @@ import { DocumentData, DocumentSnapshot, QuerySnapshot } from 'firebase/firestor
 import { Evenement } from 'src/app/core/models/event.model';
 import { Prestataire, ServiceType } from 'src/app/core/models/prestataire.model';
 import { StatusEvent, Task } from 'src/app/core/models/task.model';
-import { User } from 'src/app/core/models/user.model';
+import { Role, User } from 'src/app/core/models/user.model';
 import { FirebaseService } from 'src/app/core/services/firebase.service';
 @Component({
   selector: 'app-detail-event',
@@ -96,10 +96,12 @@ export class DetailEventComponent implements OnInit{
 
   public async getUsers(){
     this.listUsers = [];
+    const filterList:any  = [];
     const snapshot = await this.firebaseService.getUsers();
     snapshot.docs.forEach((user) => {
-      this.listUsers.push({ ...user.data(), id: user.id });
+      filterList.push({ ...user.data(), id: user.id });
     });
+    this.listUsers = filterList.filter((data: User)=> data.role === Role.salarie);
   }
 
   async updateTask(task: Task){
