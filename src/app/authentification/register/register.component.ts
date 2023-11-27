@@ -1,89 +1,87 @@
 import { Component, OnInit } from '@angular/core'
 import {
-  AbstractControl,
-  NonNullableFormBuilder,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-  FormControl,
-  FormGroup,
+	AbstractControl,
+	NonNullableFormBuilder,
+	ValidationErrors,
+	ValidatorFn,
+	Validators,
 } from '@angular/forms'
 import { Router } from '@angular/router'
 import { AuthService } from '../../core/services/auth.service'
 import { Role } from 'src/app/core/models/user.model'
 
 export function passwordsMatchValidator(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const password = control.get('password')?.value
-    const confirmPassword = control.get('confirmPassword')?.value
+	return (control: AbstractControl): ValidationErrors | null => {
+		const password = control.get('password')?.value
+		const confirmPassword = control.get('confirmPassword')?.value
 
-    if (password && confirmPassword && password !== confirmPassword) {
-      return { passwordsDontMatch: true }
-    } else {
-      return null
-    }
-  }
+		if (password && confirmPassword && password !== confirmPassword) {
+			return { passwordsDontMatch: true }
+		} else {
+			return null
+		}
+	}
 }
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+	selector: 'app-register',
+	templateUrl: './register.component.html',
+	styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
 
-  public roles = Object.values(Role);
- 
-  registerForm = this.fb.group(
-    {
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      role: [Role.visiteur, Validators.required],
-    },
-    { validators: passwordsMatchValidator() }
-  )
+	public roles = Object.values(Role)
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-    private fb: NonNullableFormBuilder
-  ) { }
+	registerForm = this.fb.group(
+		{
+			name: ['', Validators.required],
+			email: ['', [Validators.required, Validators.email]],
+			password: ['', Validators.required],
+			confirmPassword: ['', Validators.required],
+			role: [Role.visiteur, Validators.required],
+		},
+		{ validators: passwordsMatchValidator() }
+	)
 
-  ngOnInit(): void { }
+	constructor(
+		private authService: AuthService,
+		private router: Router,
+		private fb: NonNullableFormBuilder
+	) { }
 
-  get email() {
-    return this.registerForm.get('email')
-  }
+	ngOnInit(): void { }
 
-  get password() {
-    return this.registerForm.get('password')
-  }
+	get email() {
+		return this.registerForm.get('email')
+	}
 
-  get confirmPassword() {
-    return this.registerForm.get('confirmPassword')
-  }
+	get password() {
+		return this.registerForm.get('password')
+	}
 
-  get name() {
-    return this.registerForm.get('name')
-  }
+	get confirmPassword() {
+		return this.registerForm.get('confirmPassword')
+	}
 
-  get role() {
-    return this.registerForm.get('role')
-  }
+	get name() {
+		return this.registerForm.get('name')
+	}
 
-  submit() {
-    const { name, email, password, role} = this.registerForm.value
+	get role() {
+		return this.registerForm.get('role')
+	}
 
-    if (!this.registerForm.valid || !name || !password || !email || !role) {
-      return
-    }
+	submit() {
+		const { name, email, password, role } = this.registerForm.value
 
-    this.authService
-      .register(name, email, password, role)
-      .subscribe(() => {
-        this.router.navigate(['/home'])
-      })
-  }
+		if (!this.registerForm.valid || !name || !password || !email || !role) {
+			return
+		}
+
+		this.authService
+			.register(name, email, password, role)
+			.subscribe(() => {
+				this.router.navigate(['/home'])
+			})
+	}
 }
