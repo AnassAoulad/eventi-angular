@@ -15,12 +15,14 @@ import { RegisterComponent } from './authentification/register/register.componen
 import { FormGroup, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
+    HomePageComponent,
   ],
   imports: [
     ReactiveFormsModule,
